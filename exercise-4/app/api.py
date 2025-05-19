@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from services.analysis import get_combined_launch_analysis
-from models.schema import LaunchResponse
+from .services.analysis import get_combined_launch_analysis
+from .models.schema import LaunchResponse
 
 router = APIRouter()
 

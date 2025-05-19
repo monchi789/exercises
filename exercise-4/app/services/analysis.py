@@ -1,7 +1,7 @@
 from collections import Counter, defaultdict
-from services.spacex import get_spacex_launches
-from services.launch_library import get_ll2_launches
-from utils.cache import cached_response
+from .spacex import get_spacex_launches
+from .launch_library import get_ll2_launches
+from ..utils.cache import cached_response
 
 
 @cached_response(ttl=60)
