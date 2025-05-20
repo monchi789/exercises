@@ -8,7 +8,7 @@ from .services.random_user import fetch_random_users
 app = FastAPI()
 
 
-@app.get("/api/users")
+@app.get("/api/users", response_model=list[User])
 async def get_users():
     if "users" in user_cache:
         return user_cache["users"]
@@ -20,16 +20,15 @@ async def get_users():
 
             for user in base_users:
                 users.append({
-                    "uuid": uuid.uuid4(),
+                    "uuid": str(uuid.uuid4()),
                     "gender": user["gender"],
                     "first_name": user["name"]["first"],
                     "last_name": user["name"]["last"],
-                    "email": user["email"]
+                    "email": user["email"],
+                    "age": user["dob"]["age"]
                 })
             
             user_cache["users"] = users
-        
-        print(len(users))
 
         return users
     
